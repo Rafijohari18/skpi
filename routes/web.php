@@ -42,6 +42,12 @@ Route::post('/jenjang/store', 'App\Http\Controllers\Admin\JenjangPendidikanContr
 Route::put('jenjang/{id}/update', 'App\Http\Controllers\Admin\JenjangPendidikanController@update')->name('jenjang.update');
 Route::delete('jenjang/delete/{id}', 'App\Http\Controllers\Admin\JenjangPendidikanController@destroy')->name('jenjang.destroy');
 
+//matkul
+Route::get('/matkul', 'App\Http\Controllers\Admin\MatkulController@index')->name('matkul.index');
+Route::post('/matkul/store', 'App\Http\Controllers\Admin\MatkulController@store')->name('matkul.store');
+Route::put('matkul/{id}/update', 'App\Http\Controllers\Admin\MatkulController@update')->name('matkul.update');
+Route::delete('matkul/delete/{id}', 'App\Http\Controllers\Admin\MatkulController@destroy')->name('matkul.destroy');
+
 // mahasiswa
 Route::get('/mahasiswa', 'App\Http\Controllers\Admin\MahasiswaController@index')->name('mahasiswa.index');
 Route::get('/mahasiswa/create', 'App\Http\Controllers\Admin\MahasiswaController@create')->name('mahasiswa.create');
@@ -50,6 +56,11 @@ Route::get('mahasiswa/{id}/edit', 'App\Http\Controllers\Admin\MahasiswaControlle
 Route::put('mahasiswa/{id}/update', 'App\Http\Controllers\Admin\MahasiswaController@update')->name('mahasiswa.update');
 Route::delete('mahasiswa/delete/{id}', 'App\Http\Controllers\Admin\MahasiswaController@destroy')->name('mahasiswa.destroy');
 
+//deskriptor
+Route::get('/deskriptor', 'App\Http\Controllers\Admin\deskriptorController@index')->name('deskriptor.index');
+Route::post('/deskriptor/store', 'App\Http\Controllers\Admin\deskriptorController@store')->name('deskriptor.store');
+Route::put('deskriptor/{id}/update', 'App\Http\Controllers\Admin\deskriptorController@update')->name('deskriptor.update');
+Route::delete('deskriptor/delete/{id}', 'App\Http\Controllers\Admin\deskriptorController@destroy')->name('deskriptor.destroy');
 
 Route::get('profile/perguruan/tinggi', 'App\Http\Controllers\Admin\ProfileKampusController@index')->name('profile.kampus.index');
 Route::post('profile/perguruan/tinggi/update', 'App\Http\Controllers\Admin\ProfileKampusController@update')->name('profile.kampus.update');

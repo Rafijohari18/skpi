@@ -55,6 +55,12 @@
             </a>
         </li>
 
+        <li class="sidenav-item {{ $segment1 == 'matkul' ? 'active' : '' }}">
+            <a href="{{ route('matkul.index') }}" class="sidenav-link">
+                <div>Mata Kuliah</div>
+            </a>
+        </li>
+
     </ul>
 </li>
 
@@ -66,4 +72,16 @@
 </li>
 
 
-</ul>
+<li class="sidenav-item {{ ($segment1 == 'deskriptor' || $segment1 == 'program') ? 'open active' : '' }}">
+    <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-book"></i>
+        <div>Data SKPI</div>
+    </a>
+
+    <ul class="sidenav-menu">
+        <li class="sidenav-item {{ $segment1 == 'profile' ? 'active' : '' }}">
+            <a href="{{ route('deskriptor.index') }}" class="sidenav-link">
+                <div>Deskriptor Kualifikasi</div>
+            </a>
+        </li>
+    </ul>
+  </li>
