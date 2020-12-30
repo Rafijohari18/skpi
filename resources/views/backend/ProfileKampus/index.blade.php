@@ -17,7 +17,7 @@
             <form action="{{ route('profile.kampus.update') }}" method="POST">
                 @csrf
                 <input type="hidden" name="id" value="1">
-                
+
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label class="form-label">Nama Perguruan Tinggi</label>
@@ -89,15 +89,15 @@
                     </div>
                 </div>
 
-               
-                
-                <button type="submit" class="btn btn-primary">Sign in</button>
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
         </div>
 
 
-        
+
     </div> <!-- end col -->
 
 

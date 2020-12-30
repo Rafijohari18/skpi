@@ -9,7 +9,7 @@
 <div class="container-fluid container-p-y">
 
     <h4 class="font-weight-bold py-3 mb-4">
-        <span class="text-muted font-weight-light">Program Studi </span>
+        <span class="text-muted font-weight-light">Kualifikasi Nilai </span>
     </h4>
 
     <div class="card">
@@ -24,27 +24,43 @@
         <div class="card-datatable table-responsive">
             <table class="datatables-demo table table-striped table-bordered">
                 <thead>
-                <tr>
+                <tr >
                     <th>No</th>
-                    <th>Program Studi</th>
+                    <th>Index</th>
+                    <th>Angka</th>
+                    <th>Nilai Akhir Semester</th>
+                    <th>Keterangan</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
 
 
                 <tbody>
-                @foreach($data['program_studi'] as $item)
+                @foreach($data['data'] as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->index }}</td>
+                    <td>{{ $item->angka }}</td>
+                    <td>{{ $item->nilai_semester_from }}</td>
+                    <td>{{ $item->nilai_semester_to }}</td>
+                    <td>{{ $item->keterangan }}</td>
                     <td>
-                        <a class="btn icon-btn btn-sm btn-info editbtn"
-                        data-toggle="modal" data-target="#modaledit" onclick="editdata({{ $item->id }})" data-name="{{ $item->name }}" >
+                        <a
+                            class="btn icon-btn btn-sm btn-info editbtn"
+                            data-toggle="modal"
+                            data-target="#modaledit"
+                            onclick="editdata({{ $item->id }})"
+                            data-index="{{ $item->index }}"
+                            data-angka="{{ $item->angka }}"
+                            data-nilai_semester_from="{{ $item->nilai_semester_from }}"
+                            data-nilai_semester_to="{{ $item->nilai_semester_to }}"
+                            data-keterangan="{{ $item->keterangan }}"
+                        >
                             <i class="ion ion-md-create"></i>
                         </a>
 
                         <a  href="javascript:void(0);" class="btn icon-btn btn-sm btn-danger delete" data-toggle="tooltip" data-original-title="click to delete dosen"><i class="ion ion-md-trash"></i>
-                            <form action="{{ route('studi.destroy', ['id' => $item['id']]) }}" method="POST">
+                            <form action="{{ route('kualifkasi-nilai.destroy', ['id' => $item['id']]) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             </form>
@@ -60,6 +76,7 @@
 
         </div>
 
+
     </div> <!-- end col -->
 
   <!-- modal edit -->
@@ -68,7 +85,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="title-heading">
-                    <h6 class="m-0">Program Studi Edit</h6>
+                    <h6 class="m-0">Kualifikasi Nilai Edit</h6>
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span><i class="las la-times"></i></span>
@@ -81,8 +98,27 @@
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label for="name">Program Studi</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="" required>
+                            <label for="name">Index</label>
+                            <input type="text" name="index" id="index" class="form-control" placeholder="" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Angka</label>
+                            <input type="text" name="angka" id="angka" class="form-control" placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Nilai Akhir Semester</label>
+                            <div class="row">
+                                <div class="col-5">
+
+                                    <input type="text" name="angka" id="angka" class="form-control" placeholder="" required>
+                                </div>
+                                <div class="col-2">-</div>
+                                <div class="col-5">
+                                    <input type="text" name="angka" id="angka" class="form-control" placeholder="" required>
+
+                                </div>
+                            </div>
                         </div>
 
 
@@ -104,19 +140,24 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="title-heading">
-                    <h6 class="m-0">Tambah Program Studi</h6>
+                    <h6 class="m-0">Tambah Kualifikasi Nilai</h6>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span><i class="las la-times"></i></span>
                     </button>
                 </div>
-                <form action="{{ Route('studi.store') }}" method="POST">
+                <form action="{{ Route('kualifikasi-nilai.store') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="modal-body scroll">
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label for="name">Program Studi</label>
-                            <input type="text" name="name" id="name" class="form-control" required>
+                            <label for="name">Index</label>
+                            <input type="text" name="index" id="index" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Angka</label>
+                            <input type="text" name="angka" id="angka" class="form-control" placeholder="" required>
                         </div>
 
                     </div>
@@ -148,7 +189,7 @@
         e.preventDefault();
         var url = $(this).attr('href');
         Swal.fire({
-        title: 'Hapus Program Studi ?',
+        title: 'Hapus Kualifikasi Nilai ?',
         text: "Anda yakin ingin menghapus!",
         type: 'warning',
         showCancelButton: true,
@@ -165,7 +206,7 @@
     function editdata(id)
     {
         var id = id;
-        var url = '{{ route("studi.update", ":id") }}';
+        var url = '{{ route("kualifikasi-nilai.update", ":id") }}';
         url = url.replace(':id', id);
         $("#editform").attr('action', url);
     }
@@ -177,14 +218,26 @@
 
     $('.editbtn').click(function(){
 
-        var name = $(this).data('name');
+        var index = $(this).data('index');
+        var angka = $(this).data('angka');
+        const nilai_semester_from = $(this).data('nilai_semester_from');
+        const nilai_semester_to = $(this).data('nilai_semester_to');
+        const keterangan = $(this).data('keterangan');
 
-        $('.modal-body #name').val(name);
+        $('.modal-body #index').val(index);
+        $('.modal-body #angka').val(angka);
+        $('.modal-body #nilai_semester_from').val(nilai_semester_from);
+        $('.modal-body #nilai_semester_to').val(nilai_semester_to);
+        $('.modal-body #keterangan').val(keterangan);
     });
 
 
   $('.add').click(function(){
-    $('.modal-body #name').val('');
+    $('.modal-body #index').val('');
+    $('.modal-body #angka').val('');
+    $('.modal-body #nilai_semester_from').val('');
+    $('.modal-body #nilai_semester_to').val('');
+    $('.modal-body #keterangan').val('');
   });
 
 </script>

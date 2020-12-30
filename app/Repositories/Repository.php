@@ -1,6 +1,9 @@
-<?php namespace App\Repositories;
+<?php
+
+namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Repositories\RepositoryInterface;
 
 class Repository implements RepositoryInterface
 {
@@ -20,7 +23,8 @@ class Repository implements RepositoryInterface
         return $this->model->all();
     }
 
-    public function paginate($count){
+    public function paginate($count)
+    {
         return $this->model->paginate($count);
     }
 
@@ -49,7 +53,7 @@ class Repository implements RepositoryInterface
         return $this->model->findOrFail($id);
     }
 
-    public function showwith($id , $with)
+    public function showwith($id, $with)
     {
         return $this->model->with($with)->findOrFail($id);
     }
@@ -75,44 +79,47 @@ class Repository implements RepositoryInterface
 
 
     // where Gallery
-    public function wherealbum($id){
-        return $this->model->where('album_id',$id)->get();
+    public function wherealbum($id)
+    {
+        return $this->model->where('album_id', $id)->get();
     }
 
     //where Catalog
-    public function wherecatalog($id){
-        return $this->model->where('categories_id',$id)->paginate(20);
+    public function wherecatalog($id)
+    {
+        return $this->model->where('categories_id', $id)->paginate(20);
     }
 
     //detailWith
-    public function detailwith($id , $with){
+    public function detailwith($id, $with)
+    {
         return $this->model->with($with)->find($id);
     }
 
     //wherelink
-    public function wherelink($id){
-        return $this->model->where('category_id',$id)->paginate(20);
+    public function wherelink($id)
+    {
+        return $this->model->where('category_id', $id)->paginate(20);
     }
 
-    public function wherepaginate($where , $parameter , $count){
-        return $this->model->where($where, $parameter)->paginate($count);
-     }
-
-     
-     public function wherepaginaterequest(
-         $where ,
-         $parameter ,
-         $count ,
-         $search ,
-         $request
-    )
+    public function wherepaginate($where, $parameter, $count)
     {
-        if($request->q){
-        return $this->model->where($where, $parameter)
-                ->where($search, 'like' ,'%'.$request->q.'%')->paginate($count);
-        }else{
         return $this->model->where($where, $parameter)->paginate($count);
+    }
+
+
+    public function wherepaginaterequest(
+        $where,
+        $parameter,
+        $count,
+        $search,
+        $request
+    ) {
+        if ($request->q) {
+            return $this->model->where($where, $parameter)
+                ->where($search, 'like', '%' . $request->q . '%')->paginate($count);
+        } else {
+            return $this->model->where($where, $parameter)->paginate($count);
         }
     }
-     
 }

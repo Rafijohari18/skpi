@@ -8,5 +8,4 @@ class ProfileKampus extends Model
 {
     protected $table = 'profil_kampus';
     protected $guarded = [];
-    
 }

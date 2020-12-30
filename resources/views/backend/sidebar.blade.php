@@ -72,15 +72,20 @@
 </li>
 
 
-<li class="sidenav-item {{ ($segment1 == 'deskriptor' || $segment1 == 'program') ? 'open active' : '' }}">
+<li class="sidenav-item {{ ($segment1 == 'deskriptor' || $segment1 == 'kualifikasi-nilai') ? 'open active' : '' }}">
     <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-book"></i>
         <div>Data SKPI</div>
     </a>
 
     <ul class="sidenav-menu">
-        <li class="sidenav-item {{ $segment1 == 'profile' ? 'active' : '' }}">
+        <li class="sidenav-item {{ $segment1 == 'deskriptor' ? 'active' : '' }}">
             <a href="{{ route('deskriptor.index') }}" class="sidenav-link">
                 <div>Deskriptor Kualifikasi</div>
+            </a>
+        </li>
+        <li class="sidenav-item {{ $segment1 == 'kualifikasi-nilai' ? 'active' : '' }}">
+            <a href="{{ route('kualifikasi-nilai.index') }}" class="sidenav-link">
+                <div>Kualifikasi Nilai</div>
             </a>
         </li>
     </ul>
