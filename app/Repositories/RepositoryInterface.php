@@ -1,4 +1,6 @@
-<?php namespace App\Repositories;
+<?php
+
+namespace App\Repositories;
 
 interface RepositoryInterface
 {
@@ -14,17 +16,17 @@ interface RepositoryInterface
 
     public function show($id);
 
-    public function showwith($id,$with);
+    public function showwith($id, $with);
 
     public function wherealbum($id);
-    
+
     public function wherecatalog($id);
-    
-    public function detailwith($id , $with);
+
+    public function detailwith($id, $with);
 
     public function wherelink($id);
-    
-    public function wherepaginate($where , $parameter , $count);
-    
-    public function wherepaginaterequest($where , $parameter , $count ,$search, $request);
+
+    public function wherepaginate($where, $parameter, $count);
+
+    public function wherepaginaterequest($where, $parameter, $count, $search, $request);
 }
